@@ -158,3 +158,9 @@ ai-interview-platform/
 
 - **Backend** — Deploy the `backend/` folder to [Render](https://render.com) or [Railway](https://railway.app). The `Procfile` is already configured. Set the environment variables from the table above.
 - **Frontend** — Deploy the `frontend/` folder to [Vercel](https://vercel.com) or [Netlify](https://netlify.com). Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`, and update `vite.config.ts` proxy target to your deployed backend URL.
+
+---
+
+## Built With
+
+Developed by Alshifa Siddiqui. Built using Claude Code for AI-assisted development. Claude API powers interview question generation and answer evaluation via the Anthropic SDK.
