@@ -1,7 +1,11 @@
 import axios from "axios";
 import { supabase } from "../lib/supabase";
 
-const api = axios.create({ baseURL: "/api" });
+const baseURL = import.meta.env.PROD
+  ? "https://ai-interview-platform-ac5m.onrender.com/api"
+  : "/api";
+
+const api = axios.create({ baseURL });
 
 api.interceptors.request.use(async (config) => {
   const {
