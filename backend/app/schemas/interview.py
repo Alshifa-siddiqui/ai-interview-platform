@@ -44,6 +44,7 @@ class ScoreOut(BaseModel):
 class ResultOut(BaseModel):
     interview_id: str
     role: str
+    difficulty: str
     overall_score: int
     max_score: int
     summary: str

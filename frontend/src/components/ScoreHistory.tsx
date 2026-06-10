@@ -14,7 +14,8 @@ export interface ScoreRecord {
   id: string;
   role: string;
   score: number;
-  timestamp: string;
+  date: string;
+  difficulty: string;
 }
 
 function formatDate(iso: string) {
@@ -58,7 +59,10 @@ export function ScoreHistory() {
     );
   }
 
-  const data = history.map((r) => ({ ...r, date: formatDate(r.timestamp) }));
+  const data = history.map((r) => ({
+    ...r,
+    date: formatDate(r.date),
+  }));
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-2xl shadow p-6">

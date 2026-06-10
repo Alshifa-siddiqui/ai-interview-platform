@@ -27,6 +27,7 @@ export interface ScoreOut {
 export interface ResultOut {
   interview_id: string;
   role: string;
+  difficulty: string;
   overall_score: number;
   max_score: number;
   summary: string;

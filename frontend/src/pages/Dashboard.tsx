@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../api/client";
 import { useAuthStore } from "../store/authStore";
 import type { Interview } from "../types";
@@ -75,6 +75,12 @@ export default function Dashboard() {
           AI Interview
         </span>
         <div className="flex items-center gap-3">
+          <Link
+            to="/analytics"
+            className="text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            My Progress
+          </Link>
           <DarkModeToggle />
           <button
             onClick={logout}

@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Interview from "./pages/Interview";
 import Results from "./pages/Results";
+import Analytics from "./pages/Analytics";
 import { useAuthStore } from "./store/authStore";
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -38,6 +39,14 @@ export default function App() {
           element={
             <PrivateRoute>
               <Results />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <PrivateRoute>
+              <Analytics />
             </PrivateRoute>
           }
         />

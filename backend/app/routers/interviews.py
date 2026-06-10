@@ -98,6 +98,7 @@ def get_results(interview_id: str) -> ResultOut:
     return ResultOut(
         interview_id=interview_id,
         role=interview["role"],
+        difficulty=interview["difficulty"],
         overall_score=overall,
         max_score=max_total,
         summary=f"Scored {overall}/{max_total} across {len(scores)} questions.",

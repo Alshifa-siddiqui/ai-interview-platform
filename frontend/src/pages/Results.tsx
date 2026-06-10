@@ -32,7 +32,8 @@ export default function Results() {
             id,
             role: data.role,
             score: pct,
-            timestamp: new Date().toISOString(),
+            date: new Date().toISOString(),
+            difficulty: data.difficulty,
           });
           localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
         }
