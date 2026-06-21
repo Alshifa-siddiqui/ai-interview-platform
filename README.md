@@ -59,7 +59,7 @@ cd backend
 pip install -r requirements.txt
 ```
 
-Create `backend/.env`:
+Create `backend/.env` (copy the template `backend/.env.example`):
 
 ```env
 ANTHROPIC_API_KEY=sk-ant-...
@@ -81,7 +81,7 @@ cd frontend
 npm install
 ```
 
-Create `frontend/.env`:
+Create `frontend/.env` (copy the template `frontend/.env.example`):
 
 ```env
 VITE_SUPABASE_URL=https://<project>.supabase.co
@@ -161,6 +161,22 @@ ai-interview-platform/
 
 ---
 
+## Testing
+
+```bash
+# Backend smoke tests (no secrets required)
+cd backend && pip install pytest && python -m pytest tests -q
+
+# Frontend type-check + build
+cd frontend && npx tsc -b && npm run build
+```
+
+CI (`.github/workflows/ci.yml`) runs both on every push/PR.
+
+## License
+
+Released under the [MIT License](LICENSE).
+
 ## Built With
 
-Developed by Alshifa Siddiqui. Built using Claude Code for AI-assisted development. Claude API powers interview question generation and answer evaluation via the Anthropic SDK.
+Developed by Alshifa Siddiqui. Built using Claude Code for AI-assisted development. Claude API powers interview question generation and answer evaluation via the Anthropic SDK (`claude-opus-4-8`, adaptive thinking, structured outputs).
