@@ -1,0 +1,28 @@
+# Local full-stack run: FastAPI backend on :8080, nginx-served frontend on :8081
+# (frontend proxies /api -> backend). Supply real secrets via a root .env file
+# (see backend/.env.example and frontend/.env.example).
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      PRODUCTION: "${PRODUCTION:-false}"
+      ANTHROPIC_API_KEY: "${ANTHROPIC_API_KEY:-}"
+      DATABASE_URL: "${DATABASE_URL:-}"
+      SECRET_KEY: "${SECRET_KEY:-changeme}"
+      SUPABASE_JWT_SECRET: "${SUPABASE_JWT_SECRET:-}"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: /api
+        VITE_SUPABASE_URL: "${VITE_SUPABASE_URL:-}"
+        VITE_SUPABASE_ANON_KEY: "${VITE_SUPABASE_ANON_KEY:-}"
+    ports:
+      - "8081:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

@@ -156,8 +156,20 @@ ai-interview-platform/
 
 ## Deployment
 
-- **Backend** — Deploy the `backend/` folder to [Render](https://render.com) or [Railway](https://railway.app). The `Procfile` is already configured. Set the environment variables from the table above.
-- **Frontend** — Deploy the `frontend/` folder to [Vercel](https://vercel.com) or [Netlify](https://netlify.com). Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`, and update `vite.config.ts` proxy target to your deployed backend URL.
+- **Backend** — Deploy the `backend/` folder to [Render](https://render.com) or [Railway](https://railway.app). The `Procfile` is already configured. Set the environment variables from the table above. **Set `PRODUCTION=true`** so startup refuses to run on the default `SECRET_KEY`.
+- **Frontend** — Deploy the `frontend/` folder to [Vercel](https://vercel.com) or [Netlify](https://netlify.com). Set `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY`. Point the SPA at your backend with `VITE_API_URL` (falls back to the Vite dev proxy locally).
+
+### Run with Docker
+
+```bash
+# Create a root .env with your secrets (ANTHROPIC_API_KEY, SUPABASE_JWT_SECRET,
+# DATABASE_URL, SECRET_KEY, VITE_SUPABASE_URL, VITE_SUPABASE_ANON_KEY), then:
+docker compose up --build
+# frontend (nginx) -> http://localhost:8081   backend (FastAPI) -> http://localhost:8080
+```
+
+The frontend image builds with `VITE_API_URL=/api` and nginx proxies `/api` to
+the `backend` service, so the SPA and API share an origin in the container.
 
 ---
 

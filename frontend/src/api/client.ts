@@ -1,9 +1,14 @@
 import axios from "axios";
 import { supabase } from "../lib/supabase";
 
-const baseURL = import.meta.env.PROD
-  ? "https://ai-interview-platform-ac5m.onrender.com/api"
-  : "/api";
+// VITE_API_URL wins when set (e.g. the Docker build passes "/api" so nginx can
+// proxy to the backend container). Otherwise fall back to the hosted Render
+// backend in production and the Vite dev proxy locally.
+const baseURL =
+  import.meta.env.VITE_API_URL ??
+  (import.meta.env.PROD
+    ? "https://ai-interview-platform-ac5m.onrender.com/api"
+    : "/api");
 
 const api = axios.create({ baseURL });
 
